@@ -1,8 +1,8 @@
 {
   "name": "insight-api-desire",
-  "description": "A Desire blockchain REST and web socket API service for Bitcore Node.",
-  "version": "0.4.5",
-  "repository": "git://github.com/desirepay/insight-api-desire.git",
+  "description": "A DESIRE blockchain REST and web socket API service for Bitcore Node.",
+  "version": "0.6.0",
+  "repository": "git://github.com/lazyboozer/insight-api-desire.git",
   "contributors": [
     {
       "name": "Gustavo Cortez",
@@ -61,11 +61,11 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib-desire": "^0.13.20",
-    "bitcore-message-desire": "^1.0.5",
+    "bitcore-lib-desire": "lazyboozer/bitcore-lib-desire",
+    "bitcore-message-desire": "lazyboozer/bitcore-message-desire",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
-    "lodesire": "^2.4.1",
+    "lodash": "=4.17.1",
     "lru-cache": "^4.0.1",
     "morgan": "^1.7.0",
     "request": "^2.64.0"

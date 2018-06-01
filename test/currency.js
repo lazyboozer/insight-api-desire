@@ -7,7 +7,7 @@ var CurrencyController = require('../lib/currency');
 
 describe('Currency', function() {
 
-  var desireCentralData = {
+  var dsrCentralData = {
     general: {
       consensus_blockheight: 561311,
       consensus_version: 120058,
@@ -18,9 +18,9 @@ describe('Currency', function() {
       registered_masternodes_verified: 770
     },
     exchange_rates: {
-      desire_usd: 9.4858840414,
+      dsr_usd: 9.4858840414,
       btc_usd: 682.93,
-      btc_desire: 0.01388998
+      btc_dsr: 0.01388998
     }
   };
 
@@ -30,8 +30,8 @@ describe('Currency', function() {
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.desire_usd);
-        (typeof response.data.desire_usd).should.equal('number');
+        should.exist(response.data.dsr_usd);
+        (typeof response.data.dsr_usd).should.equal('number');
         done();
       }
     };
@@ -40,7 +40,7 @@ describe('Currency', function() {
 
   it('will retrieve a fresh value', function(done) {
     var TestCurrencyController = proxyquire('../lib/currency', {
-      request: sinon.stub().callsArgWith(1, null, {statusCode: 200}, JSON.stringify(desireCentralData))
+      request: sinon.stub().callsArgWith(1, null, {statusCode: 200}, JSON.stringify(dsrCentralData))
     });
     var node = {
       log: {
@@ -49,17 +49,17 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      desire_usd: 9.4858840414,
+      dsr_usd: 9.4858840414,
       btc_usd: 682.93,
-      btc_desire: 0.01388998
+      btc_dsr: 0.01388998
     };
     currency.timestamp = Date.now() - 61000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.desire_usd);
-        response.data.desire_usd.should.equal(9.4858840414);
+        should.exist(response.data.dsr_usd);
+        response.data.dsr_usd.should.equal(9.4858840414);
         done();
       }
     };
@@ -77,9 +77,9 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      desire_usd: 9.4858840414,
+      dsr_usd: 9.4858840414,
       btc_usd: 682.93,
-      btc_desire: 0.01388998
+      btc_dsr: 0.01388998
     };
     currency.timestamp = Date.now() - 65000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
     var req = {};
@@ -87,7 +87,7 @@ describe('Currency', function() {
       jsonp: function(response) {
         response.status.should.equal(200);
         should.exist(response.data);
-        response.data.desire_usd.should.equal(9.4858840414);
+        response.data.dsr_usd.should.equal(9.4858840414);
         node.log.error.callCount.should.equal(1);
         done();
       }
@@ -107,17 +107,17 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      desire_usd: 9.4858840414,
+      dsr_usd: 9.4858840414,
       btc_usd: 682.93,
-      btc_desire: 0.01388998
+      btc_dsr: 0.01388998
     };
     currency.timestamp = Date.now();
     var req = {};
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.desire_usd);
-        response.data.desire_usd.should.equal(9.4858840414);
+        should.exist(response.data.dsr_usd);
+        response.data.dsr_usd.should.equal(9.4858840414);
         request.callCount.should.equal(0);
         done();
       }
